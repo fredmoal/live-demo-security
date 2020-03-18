@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/messages
+
+###
+POST http://localhost:8080/api/messages
+Content-Type: application/json
+
+{"texte":"autre message"}
+
+###
+GET http://localhost:8080/api/messages/2
+
+###
+DELETE http://localhost:8080/api/messages/3
+
+###
+
+
