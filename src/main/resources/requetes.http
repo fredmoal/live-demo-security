@@ -1,13 +1,16 @@
 GET http://localhost:8080/api/messages
 
+
 ###
 POST http://localhost:8080/api/messages
+Authorization: Basic fred fred
 Content-Type: application/json
 
 {"texte":"autre message"}
 
 ###
-GET http://localhost:8080/api/messages/2
+GET http://localhost:8080/api/messages/1
+Authorization: Basic admin admin
 
 ###
 DELETE http://localhost:8080/api/messages/3
