@@ -3,18 +3,30 @@ GET http://localhost:8080/api/messages
 
 ###
 POST http://localhost:8080/api/messages
-Authorization: Basic fred fred
+Authorization: Basic yohan yohan
 Content-Type: application/json
 
-{"texte":"autre message"}
+{"texte":"Coucou ! I am alive"}
 
 ###
 GET http://localhost:8080/api/messages/1
 Authorization: Basic admin admin
 
 ###
-DELETE http://localhost:8080/api/messages/3
+DELETE http://localhost:8080/api/messages/1
+Authorization: Basic admin admin
+
 
 ###
+POST http://localhost:8080/api/utilisateurs
+Authorization: Basic admin admin
+Content-Type: application/json
 
+{ "login": "matthieu", "password":"matthieu","isAdmin":true }
+
+###
+GET http://localhost:8080/api/utilisateurs2/fred
+Authorization: Basic admin admin
+
+###
 
