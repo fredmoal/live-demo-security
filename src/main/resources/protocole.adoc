@@ -1,0 +1,36 @@
+= Protocole authentification JWT
+
+== Phase 1 : Authentification
+
+Le client échange un login+password contre un token JWT
+permettant ensuite d'accéder à une API REST
+
+[plantuml,authent-protocol]
+....
+Client -> ServeurAuthent: POST /api/login username&password
+ServeurAuthent -> UserService: getByLogin
+UserService --> ServeurAuthent: Utilisateur
+ServeurAuthent --> ServeurAuthent: vérifie password
+ServeurAuthent --> Client: Header token JWT
+....
+
+Dans l'entête de la Response, on a :
+
+`Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlVTRVIiLCJBRE1JTiJdLCJleHAiOjE1ODQ3Nzc5MTB9.vKRE-Q29XRL--wOfkpIxvxr-zQzekShmV1CYAv929is`
+
+== Phase 2 : Autorisation
+
+Après cette phase initale d'authentification,
+l'utilisateur peut accéder aux services REST
+protégés du serveur en ajoutant le token JWT obtenu en phase 1
+dans l'entête de TOUTES ses requêtes :
+
+`Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlVTRVIiLCJBRE1JTiJdLCJleHAiOjE1ODQ3Nzc5MTB9.vKRE-Q29XRL--wOfkpIxvxr-zQzekShmV1CYAv929is`
+
+
+[plantuml,autho-protocol]
+....
+Client -> ServeurREST: Request Authorization: Bearer XXXX
+ServeurREST --> ServeurREST: vérifie token
+ServeurREST --> Client: Response
+....

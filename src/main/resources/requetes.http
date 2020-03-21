@@ -3,7 +3,7 @@ GET http://localhost:8080/api/messages
 
 ###
 POST http://localhost:8080/api/messages
-Authorization: Basic yohan yohan
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTU4NDc4ODY4Mn0.JkshwADBsmat-gYmjdznnZ-qaC5hW4rs-E5OqDIqJ9A
 Content-Type: application/json
 
 {"texte":"Coucou ! I am alive"}
@@ -19,7 +19,7 @@ Authorization: Basic admin admin
 
 ###
 POST http://localhost:8080/api/utilisateurs
-Authorization: Basic admin admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiZXhwIjoxNTg0Nzg4ODM1fQ.YJLiH5N0y1x5HHhWN1qZPBi-6dcSkTiOtobNdU1rt6A
 Content-Type: application/json
 
 { "login": "matthieu", "password":"matthieu","isAdmin":true }
@@ -29,4 +29,11 @@ GET http://localhost:8080/api/utilisateurs2/fred
 Authorization: Basic admin admin
 
 ###
+POST http://localhost:8080/api/login?username=fred&password=fred
+
+###
+POST http://localhost:8080/api/login?username=admin&password=admin
+
+###
+
 
