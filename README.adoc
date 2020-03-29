@@ -1,0 +1,29 @@
+= Live démo Spring Security
+
+Le code source de la série de live-démos Youtube sur la sécurisation d'API REST avec Spring Security
+
+https://www.youtube.com/playlist?list=PLbIvwFkPyMFsvXQxbv6IFxYkt6DcZnHOw
+
+
+== Usage
+
+Le code de chaque tuto de la playlist est sur une branche
+
+[cols="4,1", options="header"]
+|===
+|épisode |branche
+
+|REST security ch0 - introduction : création du service REST
+|master
+
+|REST security ch1 & ch2 - Sécurisation Basic de l'API, Rôles et Principal
+|feature/basic-inmemory
+
+|REST security ch3 - Custom User Details - le retour du Jeudi
+|feature/customuserdetails
+
+|REST security ch4 - comment je maîtrise trop les tokens JWT !
+|feature/jwt
+|===
+
+
