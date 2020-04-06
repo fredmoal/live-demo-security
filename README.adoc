@@ -24,6 +24,9 @@ Le code de chaque tuto de la playlist est sur une branche
 
 |REST security ch4 - comment je maîtrise trop les tokens JWT !
 |feature/jwt
+
+|REST security ch5 - authentification par token JWT en mode réactif, avec Spring WebFlux
+|feature/jwt-reactive
 |===
 
 
