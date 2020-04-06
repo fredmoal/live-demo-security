@@ -48,6 +48,7 @@ public class SecurityConfig {
                 .securityContextRepository(securityContextRepository)
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                .pathMatchers(HttpMethod.GET,"/api/messages/subscribe").hasRole("USER")
                 .pathMatchers(HttpMethod.GET,"/api/messages/**").permitAll()
                 .pathMatchers(HttpMethod.POST,"/api/utilisateurs").hasRole("ADMIN")
                 .anyExchange().authenticated();

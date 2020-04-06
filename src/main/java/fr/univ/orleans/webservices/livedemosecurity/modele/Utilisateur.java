@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utilisateur {
-    private static final String[] ROLES_ADMIN = {"USER","ADMIN", "ROLE_ADMIN"};
-    private static final String[] ROLES_USER  = {"USER"};
+    private static final String[] ROLES_ADMIN = {"ROLE_USER","ROLE_ADMIN"};
+    private static final String[] ROLES_USER  = {"ROLE_USER"};
 
     private final String login;
     private String password;
