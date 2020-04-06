@@ -7,7 +7,7 @@ permettant ensuite d'accéder à une API REST
 
 [plantuml,authent-protocol]
 ....
-Client -> ServeurAuthent: POST /api/login username&password
+Client -> ServeurAuthent: POST /auth/login {"username"="fred","password"="fred"}
 ServeurAuthent -> UserService: getByLogin
 UserService --> ServeurAuthent: Utilisateur
 ServeurAuthent --> ServeurAuthent: vérifie password

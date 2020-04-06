@@ -1,39 +1,55 @@
 GET http://localhost:8080/api/messages
+Accept: application/json
 
+### le client IntelliJ ne marche pas avec les streams ! curl -H "${AUTH}" -X GET http://localhost:8080/api/messages/subscribe
+GET http://localhost:8080/api/messages/subscribe
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFUiJdLCJleHAiOjE1ODYwNjk1ODF9.2HVolRR3seI6grA7i0s9_GOixuEr5RGTJB-swBmSh7iwTbbeoALFZlyQrHmCkEH9XEWuJmTJet0_T26OqFUM5w
 
 ###
 POST http://localhost:8080/api/messages
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTU4NDc4ODY4Mn0.JkshwADBsmat-gYmjdznnZ-qaC5hW4rs-E5OqDIqJ9A
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFUiJdLCJleHAiOjE1ODYxNTU1Nzl9.YFO0a7M5-v8llOZ6DDj9iYlfNcDvqzMXbSdMCzo4isKsGEqFfHWfHPw3R3et0KXQGk_9hOWqaYdw6gVwQTcJOg
 Content-Type: application/json
 
-{"texte":"Coucou ! I am alive"}
+{"texte":"Youpi ça marche !"}
 
 ###
-GET http://localhost:8080/api/messages/1
-Authorization: Basic admin admin
+POST http://localhost:8080/api/messages
+Content-Type: application/json
+
+{"texte":"On se calme ! vos papiers !"}
+
+###
+GET http://localhost:8080/api/messages/5
+
 
 ###
 DELETE http://localhost:8080/api/messages/1
-Authorization: Basic admin admin
+Authorization: Basic fred fred
 
+### curl -i -s -X POST -H 'Content-Type: application/json' --data '{"username":"fred","password":"fred"}' http://localhost:8080/auth/login
+### AUTH=$(curl -i -s -X POST -H 'Content-Type: application/json' --data '{"username":"fred","password":"fred"}' http://localhost:8080/auth/login | grep "Authorization:")
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "fred",
+  "password": "fred"
+}
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
 
 ###
 POST http://localhost:8080/api/utilisateurs
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiZXhwIjoxNTg0Nzg4ODM1fQ.YJLiH5N0y1x5HHhWN1qZPBi-6dcSkTiOtobNdU1rt6A
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFUiJdLCJleHAiOjE1ODYxNTU1Nzl9.YFO0a7M5-v8llOZ6DDj9iYlfNcDvqzMXbSdMCzo4isKsGEqFfHWfHPw3R3et0KXQGk_9hOWqaYdw6gVwQTcJOg
 Content-Type: application/json
 
-{ "login": "matthieu", "password":"matthieu","isAdmin":true }
-
+{"login":"yohan", "password":"yohan"}
 ###
-GET http://localhost:8080/api/utilisateurs2/fred
-Authorization: Basic admin admin
-
-###
-POST http://localhost:8080/api/login?username=fred&password=fred
-
-###
-POST http://localhost:8080/api/login?username=admin&password=admin
-
-###
-
 

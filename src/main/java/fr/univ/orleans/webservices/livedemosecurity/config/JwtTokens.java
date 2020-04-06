@@ -1,6 +1,7 @@
 package fr.univ.orleans.webservices.livedemosecurity.config;
 
-import fr.univ.orleans.webservices.livedemosecurity.config.erreur.MauvaisTokenException;
+import fr.univ.orleans.webservices.livedemosecurity.config.erreurs.MauvaisTokenException;
+import fr.univ.orleans.webservices.livedemosecurity.modele.Utilisateur;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -8,7 +9,6 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -18,18 +18,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtTokens {
-
-    private static final long EXPIRATION_TIME = 1_000_000;
-    public static final String PREFIX = "Bearer ";
+    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final long EXPIRATION_TIME = 1_000_000;
 
     @Autowired
     private Key secretKey;
 
-    public String genereToken(UserDetails userDetails) {
-        String login = userDetails.getUsername();
-        var roles = userDetails.getAuthorities().stream().map(auth->auth.getAuthority()).collect(Collectors.toList());
+    public String genereToken(Utilisateur user) {
+        String login = user.getLogin();
         Claims claims = Jwts.claims().setSubject(login);
-        claims.put("roles", roles);
+        claims.put("roles", user.getRoles());
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -39,28 +37,25 @@ public class JwtTokens {
     }
 
     public UsernamePasswordAuthenticationToken decodeToken(String token) throws MauvaisTokenException {
-        // le token a une entete ? Bearer
-        if (token.startsWith(PREFIX)) {
-            token = token.replaceFirst(PREFIX,"");
+        // le token a un entete ?
+        if (token.startsWith(TOKEN_PREFIX)) {
+            token = token.replaceFirst(TOKEN_PREFIX, "");
         }
-
         try {
             Jws<Claims> jwsClaims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
-            // OK le token est bon
+            // Signature vérifiée : le token est fiable
             String login = jwsClaims.getBody().getSubject();
             List<String> roles = jwsClaims.getBody().get("roles",List.class);
-
             List<SimpleGrantedAuthority> authorities =
                     roles.stream()
                             .map(SimpleGrantedAuthority::new)
                             .collect(Collectors.toList());
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(login, null, authorities);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(login,null,authorities);
 
             return authentication;
-
         } catch (JwtException e) {
-            throw new MauvaisTokenException();
+            // mauvais format de token !
+            throw new MauvaisTokenException(e.getMessage());
         }
     }
 }
