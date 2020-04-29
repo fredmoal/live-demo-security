@@ -7,13 +7,14 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFU
 
 ###
 POST http://localhost:8080/api/messages
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFUiJdLCJleHAiOjE1ODYxNTU1Nzl9.YFO0a7M5-v8llOZ6DDj9iYlfNcDvqzMXbSdMCzo4isKsGEqFfHWfHPw3R3et0KXQGk_9hOWqaYdw6gVwQTcJOg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTU4NjE5MDM3NX0.8oX5FKGcPQ_iRIR7msWWtl-OtM-S9iYmn2UcgFSFcXFvf7XBYpyw4WiQTIACGkSblNQiDIje6M0sFBRctoZE_Q
 Content-Type: application/json
 
 {"texte":"Youpi ça marche !"}
 
 ###
 POST http://localhost:8080/api/messages
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlVTRVIiLCJBRE1JTiIsIlJPTEVfQURNSU4iXSwiZXhwIjoxNTg2MTcxODAwfQ.Z-GJfUZ6EhHlAK6O6N53OBdogKZhqEeW1vVMXt03cbT_Clb6gmU9GmXP_XnJGkECupeY9MvbFpCCNu-SC-Buqg
 Content-Type: application/json
 
 {"texte":"On se calme ! vos papiers !"}
@@ -24,7 +25,6 @@ GET http://localhost:8080/api/messages/5
 
 ###
 DELETE http://localhost:8080/api/messages/1
-Authorization: Basic fred fred
 
 ### curl -i -s -X POST -H 'Content-Type: application/json' --data '{"username":"fred","password":"fred"}' http://localhost:8080/auth/login
 ### AUTH=$(curl -i -s -X POST -H 'Content-Type: application/json' --data '{"username":"fred","password":"fred"}' http://localhost:8080/auth/login | grep "Authorization:")
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/api/utilisateurs
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVkIiwicm9sZXMiOlsiVVNFUiJdLCJleHAiOjE1ODYxNTU1Nzl9.YFO0a7M5-v8llOZ6DDj9iYlfNcDvqzMXbSdMCzo4isKsGEqFfHWfHPw3R3et0KXQGk_9hOWqaYdw6gVwQTcJOg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiZXhwIjoxNTg2MTkwNDY4fQ.Q-KhU0Hl3LXEs8QALlm29ELmvi4nUhZGd_1ZHZvwhi92lEGG9VmxOZykZtfkSEIak2kWtipPJuf7kxQTI9aQRw
 Content-Type: application/json
 
 {"login":"yohan", "password":"yohan"}
